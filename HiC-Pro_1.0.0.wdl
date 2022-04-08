@@ -515,11 +515,7 @@ task Mapped_Hic_Fragments {
             -f ~{bedFile} \
             -r ~{bowtieMappedPairs} \
             -o ./output
-        LANG=en; sort \
-            -T tmp \
-            -k2,2V -k3,3n -k5,5V -k6,6n \
-            -o ./output/~{sampleName}_~{refGenome}.bwt2pairs.validPairs \
-            ./output/~{sampleName}_~{refGenome}.bwt2pairs.validPairs
+            
         date >> ./output/logs/time.log
     >>>
 
@@ -563,7 +559,7 @@ task Merge_Valid_Interaction {
         mkdir -p ./output/logs
         date > ./output/logs/time.log
         cp sample.bwt2pairs.validPairs ./tmp
-        LANG=en; sort -T ./tmp -S 50% -k2,2V -k3,3n -k5,5V -k6,6n -m ./tmp/*.validPairs | \
+        LANG=en; sort -T ./tmp -S 50% -k2,2V -k3,3n -k5,5V -k6,6n ./tmp/*.validPairs | \
         awk -F"\t" 'BEGIN{c1=0;c2=0;s1=0;s2=0}(c1!=$2 || c2!=$5 || s1!=$3 || s2!=$6){print;c1=$2;c2=$5;s1=$3;s2=$6}' > ./output/~{resName}.allValidPairs
         echo -e -n "valid_interaction\t" > ./output/~{resName}_allValidPairs.mergestat
         cat sample.bwt2pairs.validPairs | wc -l >> ./output/~{resName}_allValidPairs.mergestat
@@ -663,10 +659,10 @@ task Making_Plot {
         python ~{hicPath}/scripts/merge_statfiles.py -d ./~{sampleName}/~{sampleName}_R2_~{refGenome}.mapstat -p "*_R2*.mapstat" -v > ./~{sampleName}/~{sampleName}.mmapStatR2
         python ~{hicPath}/scripts/merge_statfiles.py -d ./~{sampleName}/~{sampleName}_~{refGenome}.bwt2pairs.pairstat -p "*.pairstat" -v > ./~{sampleName}/~{sampleName}.mPairStat
         python ~{hicPath}/scripts/merge_statfiles.py -d ./~{sampleName}/~{sampleName}_~{refGenome}.bwt2pairs.RSstat -p "*.RSstat" -v > ./~{sampleName}/~{sampleName}.mRSstat
+        python ~{hicPath}/scripts/normalizeStat.py -d ./~{sampleName} -p "*.mPairStat" -v > ./temDir/~{sampleName}_~{refGenome}.bwt2pairs.pairstat
 
         cp ./~{sampleName}/~{sampleName}.mmapStatR1 ./temDir/~{sampleName}_R1_~{refGenome}.mapstat
         cp ./~{sampleName}/~{sampleName}.mmapStatR2 ./temDir/~{sampleName}_R2_~{refGenome}.mapstat
-        cp ./~{sampleName}/~{sampleName}.mPairStat ./temDir/~{sampleName}_~{refGenome}.bwt2pairs.pairstat
         cp ./temDir/~{sampleName}_~{refGenome}.bwt2pairs.pairstat ./output/~{sampleName}.pairstat
         cp ./~{sampleName}/~{sampleName}.mRSstat ./temDir/~{sampleName}_~{refGenome}.bwt2pairs.RSstat
         cp -r ~{mergeStat} ./temDir/~{sampleName}.mergestat
