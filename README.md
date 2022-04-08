@@ -2,7 +2,7 @@
 HiC-Pro in wdl format is 
 
 ### WorkFlow
-![This is a alt text.](/image/sample.png "This is a sample image.")
+![This is a alt text.](/docs/HiCPro-Diagram.png "HiC-Pro workflow diagram")
 
 ### Dependence
 * [HiC-Pro](https://github.com/nservant/HiC-Pro)
