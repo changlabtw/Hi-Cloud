@@ -6,7 +6,7 @@ HiC-Pro in wdl format is a way to specify data processing workflows with a human
 * Make parallelize on cloud easier
 
 ### WorkFlow
-![This is a alt text.](/docs/HiCPro-Diagram.png "HiC-Pro workflow diagram")
+<div align = center>![This is a alt text.](/docs/HiCPro-Diagram.png "HiC-Pro workflow diagram")</div>
 
 0. Fastq Partition: Split the fastq data into smaller files (Cloud Only)
 1. Global Mapping: Use Bowtie2 align the reads to reference genome 
