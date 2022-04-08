@@ -1,6 +1,10 @@
 # HiC-Pro WDL
 HiC-Pro in wdl format is a way to specify data processing workflows with a human-readable and writeable syntax. WDL makes it straightforward to define complex analysis tasks, chain them together in workflows, and parallelize the execution.
 
+## Why HiC-Pro in WDL format
+* Easy to understand and change specify task
+* Make parallelize on cloud easier
+
 ### WorkFlow
 ![This is a alt text.](/docs/HiCPro-Diagram.png "HiC-Pro workflow diagram")
 
