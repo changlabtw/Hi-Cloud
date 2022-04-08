@@ -30,3 +30,6 @@ HiC-Pro in wdl format is a way to specify data processing workflows with a human
 * Run wdl file - [Cromwell](https://github.com/broadinstitute/cromwell)
 > java -jar cromwell-XY.jar run myWorkflow.wdl -i myWorkflow.json
 * [WDL guideline](https://github.com/openwdl/wdl)
+
+### Claimer
+* You can't run this wdl file locally, it may cause error with uncorrect directory setting. Please run it though Atgenomix.
