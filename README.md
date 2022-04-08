@@ -1,8 +1,20 @@
 # HiC-Pro WDL
-HiC-Pro in wdl format is 
+HiC-Pro in wdl format is a way to specify data processing workflows with a human-readable and writeable syntax. WDL makes it straightforward to define complex analysis tasks, chain them together in workflows, and parallelize the execution.
 
 ### WorkFlow
 ![This is a alt text.](/docs/HiCPro-Diagram.png "HiC-Pro workflow diagram")
+0. Fastq Partition: Split the fastq data into smaller files (Cloud Only)
+1. Global Mapping: Use Bowtie2 align the reads to reference genome 
+2. Trimming: Remaining unmapped reads spanning the ligation junction are trimmmed from their 3’ end.
+3. Local Mapping: Align trimmed reads to reference genome again.
+4. Mapping Combine: Combine global mapping and local mapping results
+5. Mapping Stat: Stat the mapping quality.
+6. Merge Pairs: Merge mapped R1 and R2 bam files.
+7. Mapped HicFragments: Filter out invalid pairs and output valid reads
+8. Merge Valid Interaction: Merge all the valid reads from different cpu outcome (sample.allValidPairs).
+9. Build Matrix: Build contact matrix base on sample.allValidPairs.
+10. Making Plot: Merge stat files and visualize mapping quality.
+11. Ice Normaliztion: Use package iced to normalize contact matrix.
 
 ### Dependence
 * [HiC-Pro](https://github.com/nservant/HiC-Pro)
