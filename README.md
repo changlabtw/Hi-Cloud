@@ -32,6 +32,7 @@ HiC-Pro WDL is a way to specify data processing workflows with a human-readable 
 * [WDL guideline](https://github.com/openwdl/wdl)
 
 ### Performance
+>Azure D13_v2 VM has specification 8 cores CPU + 56GB RAM.
 <table class="MsoTable15Grid4Accent5" style="border-collapse:collapse;border:none" cellspacing="0" cellpadding="0" border="1">
  <tbody><tr>
   <td style="width:141.7pt;border:solid #5B9BD5 1.0pt;
